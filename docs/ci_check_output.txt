@@ -1,0 +1,18 @@
+traced 133 ATen calls, 59 fell back (18.15% of step time)
+
+top 10 operators by cumulative time:
+  aten::gelu                          calls=  1 time_ns=  11788100
+  aten::addmm                         calls=  4 time_ns=   2891500
+  aten::div.Tensor                    calls=  2 time_ns=   2670700
+  aten::arange                        calls=  1 time_ns=   2446200 FALLBACK
+  aten::native_layer_norm             calls=  3 time_ns=   2229100
+  aten::bmm                           calls=  6 time_ns=   1957600
+  aten::_softmax                      calls=  1 time_ns=   1729600
+  aten::embedding                     calls=  2 time_ns=   1394200 FALLBACK
+  aten::sum.dim_IntList               calls=  5 time_ns=   1199300
+  aten::gelu_backward                 calls=  1 time_ns=   1127400
+
+FAIL: 2 fallback operator(s) in the top 10 by time:
+  aten::arange
+  aten::embedding
+exit: 1
