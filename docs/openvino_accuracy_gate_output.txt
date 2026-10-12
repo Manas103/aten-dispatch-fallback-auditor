@@ -1,0 +1,5 @@
+FP32 top-1 accuracy: 0.9863 (1024 examples)
+INT8 top-1 accuracy: 0.9854
+drop: 0.10 percentage points (budget: 1.0)
+PASSED: within budget
+exit=0

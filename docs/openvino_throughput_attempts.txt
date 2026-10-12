@@ -1,0 +1,17 @@
+Attempt 1: single-stream, batch=4, 1 thread (canonical, matches resume's workload)
+FP32: median latency 248.5us, 4025.0 infers/sec
+INT8: median latency 194.1us, 5152.0 infers/sec
+speedup (INT8 throughput / FP32 throughput): 1.28x
+FP32 p10-p90 latency: 235.5-347.5us
+INT8 p10-p90 latency: 189.2-237.1us
+
+Attempt 2: single-stream, batch size swept 4/64/256/1024, 1 thread
+batch=    4 fp32=   251.9us int8=   196.2us speedup=1.28x
+batch=   64 fp32=  2076.1us int8=  1483.4us speedup=1.40x
+batch=  256 fp32=  7918.6us int8=  5230.3us speedup=1.51x
+batch= 1024 fp32= 32630.2us int8= 20685.3us speedup=1.58x
+
+Attempt 3: multi-stream THROUGHPUT hint, AsyncInferQueue, 6 threads, 2000 requests
+fp32 throughput: 4940.4 infers/sec
+int8 throughput: 6530.1 infers/sec
+speedup: 1.32x

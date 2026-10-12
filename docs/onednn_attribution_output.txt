@@ -1,0 +1,26 @@
+=== FP32: artifacts/model_fp32.xml ===
+  (layout conversion, not a model layer)        reorder            jit_direct_copy:uni          384
+  (layout conversion, not a model layer)        reorder            jit_direct_copy:uni          512
+  (layout conversion, not a model layer)        reorder            jit_direct_copy:uni          128
+  (layout conversion, not a model layer)        reorder            jit_direct_copy:uni          10
+  (layout conversion, not a model layer)        reorder            jit:uni                      384x128
+  (layout conversion, not a model layer)        reorder            jit:uni                      512x128
+  (layout conversion, not a model layer)        reorder            jit:uni                      128x512
+  (layout conversion, not a model layer)        reorder            jit:uni                      10x128
+  wqkv (combined QKV projection)                inner_product      brgemm:avx512_core_bf16      mb64ic128oc384
+  fc1 (MLP up-projection)                       inner_product      brgemm:avx512_core_bf16      mb64ic128oc512
+  fc2 (MLP down-projection)                     inner_product      brgemm:avx512_core_bf16      mb64ic512oc128
+  head (classification head)                    inner_product      brgemm:avx512_core_bf16      mb4ic128oc10
+  (layout conversion, not a model layer)        reorder            jit_direct_copy:uni          4x10
+
+=== INT8: artifacts/model_int8.xml ===
+  (layout conversion, not a model layer)        reorder            jit:uni                      384x128
+  (layout conversion, not a model layer)        reorder            jit:uni                      512x128
+  (layout conversion, not a model layer)        reorder            jit:uni                      128x512
+  (layout conversion, not a model layer)        reorder            jit:uni                      10x128
+  wqkv (combined QKV projection)                inner_product      brgemm:avx512_core_vnni      mb64ic128oc384
+  (layout conversion, not a model layer)        reorder            jit_direct_copy:uni          4x16x128
+  fc1 (MLP up-projection)                       inner_product      brgemm:avx512_core_vnni      mb64ic128oc512
+  fc2 (MLP down-projection)                     inner_product      brgemm:avx512_core_vnni      mb64ic512oc128
+  head (classification head)                    inner_product      brgemm:avx512_core_vnni      mb4ic128oc10
+

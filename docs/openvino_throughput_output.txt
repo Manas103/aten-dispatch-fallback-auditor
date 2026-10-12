@@ -1,0 +1,5 @@
+FP32: median latency 260.3us, 3841.7 infers/sec
+INT8: median latency 220.3us, 4539.3 infers/sec
+speedup (INT8 throughput / FP32 throughput): 1.18x
+FP32 p10-p90 latency: 234.2-345.1us
+INT8 p10-p90 latency: 190.3-295.4us

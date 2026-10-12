@@ -34,3 +34,23 @@ jobs:
       # recomputed position indices (see README) would turn this green.
       - run: python src/ci_check.py
         continue-on-error: true
+
+  openvino-int8-leg:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -r requirements.txt
+      - run: cd src && python train_classifier.py
+      - run: cd src && python export_openvino.py
+      - run: cd src && python quantize_int8.py
+      - run: cd src && python onednn_attribution.py
+      # Expected to pass on this runner too: the measured FP32-to-INT8
+      # accuracy drop (see README Measured results) is well inside the
+      # 1% budget on every configuration tried, not a target this gate
+      # was tuned to hit.
+      - run: cd src && python accuracy_gate.py

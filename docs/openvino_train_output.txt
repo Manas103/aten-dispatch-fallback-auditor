@@ -1,0 +1,14 @@
+epoch  0  loss 1.8469  val_acc 0.8076
+epoch  1  loss 0.1851  val_acc 0.9795
+epoch  2  loss 0.0063  val_acc 0.9863
+epoch  3  loss 0.0004  val_acc 0.9854
+epoch  4  loss 0.0002  val_acc 0.9863
+epoch  5  loss 0.0001  val_acc 0.9863
+epoch  6  loss 0.0001  val_acc 0.9863
+epoch  7  loss 0.0000  val_acc 0.9863
+epoch  8  loss 0.0000  val_acc 0.9863
+epoch  9  loss 0.0000  val_acc 0.9863
+epoch 10  loss 0.0000  val_acc 0.9863
+epoch 11  loss 0.0000  val_acc 0.9863
+trained in 30.8s, final val top-1 accuracy: 0.9863
+saved artifacts/model_fp32.pt and artifacts/val_set.pt

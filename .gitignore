@@ -3,3 +3,8 @@ __pycache__/
 .pytest_cache/
 venv/
 .venv/
+
+# Trained weights, exported IR and the validation tensor set, all
+# regenerable in order: python src/train_classifier.py, then
+# python src/export_openvino.py, then python src/quantize_int8.py.
+src/artifacts/
